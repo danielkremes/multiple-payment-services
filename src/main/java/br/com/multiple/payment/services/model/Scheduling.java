@@ -1,7 +1,8 @@
 package br.com.multiple.payment.services.model;
 
+import br.com.multiple.payment.services.enums.StatusScheduling;
+import br.com.multiple.payment.services.enums.TypeCommunication;
 import jakarta.persistence.*;
-import org.apache.logging.log4j.CloseableThreadContext;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class Scheduling {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_comunication_scheduling",nullable = false)
-    private TypeComunication typeComunication;
+    private TypeCommunication typeCommunication;
 
     @Column(name = "date_time_sent", nullable = false)
     private Instant dateTimeSent;
