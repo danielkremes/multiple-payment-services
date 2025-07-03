@@ -3,12 +3,18 @@ package br.com.multiple.payment.services.model;
 import br.com.multiple.payment.services.enums.StatusScheduling;
 import br.com.multiple.payment.services.enums.TypeCommunication;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_scheduling")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Scheduling {
 
     @Id
