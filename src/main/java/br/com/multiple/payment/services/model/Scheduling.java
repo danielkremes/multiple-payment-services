@@ -44,4 +44,10 @@ public class Scheduling {
     @Column(name = "created_scheduling", nullable = false)
     private Instant createAt;
 
+    @PrePersist
+    protected void onCreate() {
+        Instant now = Instant.now();
+        this.createAt = now;
+        this.dateTimeSent = now;
+    }
 }
