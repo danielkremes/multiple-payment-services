@@ -23,14 +23,14 @@ public class Scheduling {
     private String messageScheduling;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_comunication_scheduling",nullable = false)
+    @Column(name = "type_comunication_scheduling", nullable = false)
     private TypeCommunication typeCommunication;
 
     @Column(name = "date_time_sent", nullable = false)
     private Instant dateTimeSent;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_scheduling",nullable = false)
+    @Column(name = "status_scheduling", nullable = false)
     private StatusScheduling statusScheduling;
 
     @Column(name = "created_scheduling", nullable = false)
