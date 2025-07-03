@@ -1,10 +1,10 @@
-# 🧾 multiple-payment-services:  [Link project on YouTube click here](https://www.youtube.com/watch?v=QjiA5bIDBr8&ab_channel=DANIELKREMES)
+# 🧾 multiple-scheduling-services:  [Link project on YouTube click here](https://www.youtube.com/watch?v=QjiA5bIDBr8&ab_channel=DANIELKREMES)
 
-> Challenger project for Magalu Internship — a Spring Boot service for handling multiple payment methods.
+> Challenger project for Magalu Internship — a Spring Boot service for handling multiple schedulings.
 
 ## 📌 Project Description
 
-This is a backend service developed using **Spring Boot 3.5.3**, designed to support multiple payment integrations. The
+This is a backend service developed using **Spring Boot 3.5.3**, designed to support multiple schedulings. The
 project is built with Java 17 and leverages Spring's robust ecosystem to support RESTful APIs, data persistence, and
 validation.
 
