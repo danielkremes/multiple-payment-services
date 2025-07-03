@@ -9,23 +9,27 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class SchedulingService {
 
     private SchedulingRepository schedulingRepository;
 
-    public SchedulingResponserDTOS schedulingResponserDTOS(SchedulingRequesterDTOS schedulingRequesterDTOS) {
-        Scheduling scheduling = Scheduling.builder()
-                .destinationScheduling(schedulingRequesterDTOS.destination())
-                .messageScheduling(schedulingRequesterDTOS.message())
-                .typeCommunication(schedulingRequesterDTOS.typeCommunication())
-                .statusScheduling(StatusScheduling.SCHEDULED)
-                .build();
+    public SchedulingService(SchedulingRepository schedulingRepository) {
+        this.schedulingRepository = schedulingRepository;
+    }
 
+    public SchedulingResponserDTOS schedulingResponserDTOS(SchedulingRequesterDTOS schedulingRequesterDTOS) {
+        Scheduling scheduling = Scheduling.builder().destinationScheduling(schedulingRequesterDTOS.destination()).messageScheduling(schedulingRequesterDTOS.message()).typeCommunication(schedulingRequesterDTOS.typeCommunication()).statusScheduling(StatusScheduling.SCHEDULED).build();
         return toResponse(schedulingRepository.save(scheduling));
+    }
+
+    public List<SchedulingResponserDTOS> searchAllScheduling() {
+        List<Scheduling> schedulings = schedulingRepository.findAll();
+        return schedulings.stream().map(s -> new SchedulingResponserDTOS(s.getId(), s.getDestinationScheduling(), s.getMessageScheduling(), s.getTypeCommunication(), s.getDateTimeSent(), s.getStatusScheduling(), s.getCreateAt())).collect(Collectors.toList());
     }
 
     public SchedulingResponserDTOS searchById(UUID id) {
@@ -41,14 +45,6 @@ public class SchedulingService {
     }
 
     public SchedulingResponserDTOS toResponse(Scheduling scheduling) {
-        return new SchedulingResponserDTOS(
-                scheduling.getId(),
-                scheduling.getDestinationScheduling(),
-                scheduling.getMessageScheduling(),
-                scheduling.getTypeCommunication(),
-                scheduling.getDateTimeSent(),
-                scheduling.getStatusScheduling(),
-                scheduling.getCreateAt()
-        );
+        return new SchedulingResponserDTOS(scheduling.getId(), scheduling.getDestinationScheduling(), scheduling.getMessageScheduling(), scheduling.getTypeCommunication(), scheduling.getDateTimeSent(), scheduling.getStatusScheduling(), scheduling.getCreateAt());
     }
 }
